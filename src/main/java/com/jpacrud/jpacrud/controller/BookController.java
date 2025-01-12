@@ -98,7 +98,7 @@ public class BookController {
 		BookResponse bookResponse = new BookResponse();
 		Book bookFound = bookService.buyBook(buyBookRequest);
 		bookResponse.setResponseCode(HttpStatusCode.valueOf(200) + "");
-		bookResponse.setStatus("SUCCESS - Purchased.");
+		bookResponse.setStatus("SUCCESS - Purchased");
 		if (null != bookFound) {
 			List<Book> books = new ArrayList<>();
 			books.add(bookFound);
