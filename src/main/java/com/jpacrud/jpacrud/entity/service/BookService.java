@@ -48,23 +48,21 @@ public class BookService {
 	}
 	public Book updateBook(UpdateBookRequest book) throws BookNotFoundException {
 		Book bookNotFound = new Book();
-		bookNotFound.setAuthor(book.getAuthor());
-		bookNotFound.setPublisher(book.getPublisher());
-		bookNotFound.setTitle(book.getTitle());
 	    Book bookFound = bookRepo.findById(book.getId())
 	                             .orElseThrow(() -> new BookNotFoundException(bookNotFound));
-
+		
+	    if (Objects.nonNull(book.getAuthor()) && !"".equalsIgnoreCase(book.getAuthor())) {
+	    	bookNotFound.setAuthor(book.getAuthor());
+	    }
+	    if (Objects.nonNull(book.getPublisher()) && !"".equalsIgnoreCase(book.getPublisher())) {
+	    	bookNotFound.setPublisher(book.getPublisher());
+	    }
+	    if (Objects.nonNull(book.getTitle()) && !"".equalsIgnoreCase(book.getTitle())) {
+	    	bookNotFound.setTitle(book.getTitle());
+	    }
+		
 	    if (Objects.nonNull(book.getPublishedDate())) {
 	        bookFound.setPublishedDate(book.getPublishedDate());
-	    }
-	    if (Objects.nonNull(book.getTitle())) {
-	        bookFound.setTitle(book.getTitle());
-	    }
-	    if (Objects.nonNull(book.getAuthor())) {
-	        bookFound.setAuthor(book.getAuthor());
-	    }
-	    if (Objects.nonNull(book.getPublisher())) {
-	        bookFound.setPublisher(book.getPublisher());
 	    }
 	    if (book.getPrice() > 0.00) {
 	        bookFound.setPrice(book.getPrice());
@@ -73,7 +71,7 @@ public class BookService {
 	        bookFound.setQuantity(book.getQuantity());
 	        bookFound.setIsAvail("YES");
 	    }
-	    if (Objects.nonNull(book.getIsAvail())) {
+	    if (Objects.nonNull(book.getIsAvail()) && !"".equalsIgnoreCase(book.getIsAvail())) {
 	        bookFound.setIsAvail(book.getIsAvail());
 	    }
 
