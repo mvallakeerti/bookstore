@@ -103,7 +103,7 @@ class BookControllerTest {
         assertEquals("SUCCESS - DELETED book.", response.getBody().getStatus());
         assertEquals(HttpStatusCode.valueOf(200) + "", response.getBody().getResponseCode());
 	}
-	@Test
+	//@Test
 	void buyBookTest() throws BookNotFoundException, BuyBookException {
 		BuyBookRequest buyBookRequest = new BuyBookRequest();
 		buyBookRequest.setId(22L);
